@@ -1,4 +1,4 @@
-package task;
+package task.LFU;
 
 public class HitRate implements Comparable<HitRate> {
     Integer key;

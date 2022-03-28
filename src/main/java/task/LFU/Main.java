@@ -1,7 +1,6 @@
-package task;
+package task.LFU;
 
-import java.util.HashMap;
-import java.util.Map;
+import task.LFU.LFUCacheStatistic;
 
 public class Main {
     public static void main(String[] as) {

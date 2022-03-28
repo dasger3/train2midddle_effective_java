@@ -1,6 +1,6 @@
-package task;
+package task.LFU;
 
-import org.slf4j.LoggerFactory;
+import task.model.StringObject;
 
 import java.util.Optional;
 import java.util.logging.Logger;

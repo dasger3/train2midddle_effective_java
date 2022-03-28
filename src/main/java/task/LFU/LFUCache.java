@@ -1,8 +1,7 @@
-package task;
+package task.LFU;
 
 import lombok.NoArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import task.model.StringObject;
 
 import java.util.Collections;
 import java.util.Map;

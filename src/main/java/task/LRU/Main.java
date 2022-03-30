@@ -2,7 +2,7 @@ package task.LRU;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         LRUCache cache = new LRUCache(4);
         cache.set(1, "first");
         cache.set(2, "second");
@@ -20,6 +20,7 @@ public class Main {
         cache.printCache();
         cache.set(5, "fifth1");
         cache.printCache();
+        cache.printStatistics();
     }
 
 

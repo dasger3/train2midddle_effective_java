@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @NoArgsConstructor
 public class LFUCache {
@@ -21,9 +22,6 @@ public class LFUCache {
         this.capacity = capacity;
     }
 
-    // @param key, an integer
-    // @param value, an integer
-    // @return nothing
     public Optional<StringObject> set(int key, String value) {
         StringObject deletedItem = null;
         StringObject v = cache.get(key);
@@ -33,10 +31,10 @@ public class LFUCache {
                 deletedItem = cache.remove(k);
                 serviceCache.remove(k);
             }
-            serviceCache.put(key, new HitRate(key, 1, System.nanoTime()));
+            serviceCache.put(key, new HitRate(key, new AtomicInteger(1), System.nanoTime()));
         } else { // Если ключ тот же, только увеличиваем частоту, время обновления и не заменяем
             HitRate hitRate = serviceCache.get(key);
-            hitRate.hitCount += 1;
+            hitRate.hitCount.getAndAdd(1);
             hitRate.lastTime = System.nanoTime();
         }
         cache.put(key, new StringObject(value));
@@ -47,7 +45,7 @@ public class LFUCache {
         StringObject v = cache.get(key);
         if (v != null) {
             HitRate hitRate = serviceCache.get(key);
-            hitRate.hitCount += 1;
+            hitRate.hitCount.getAndAdd(1);
             hitRate.lastTime = System.nanoTime();
             return v;
         }

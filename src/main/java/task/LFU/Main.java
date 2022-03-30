@@ -1,6 +1,6 @@
 package task.LFU;
 
-import task.LFU.LFUCacheStatistic;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     public static void main(String[] as) {
